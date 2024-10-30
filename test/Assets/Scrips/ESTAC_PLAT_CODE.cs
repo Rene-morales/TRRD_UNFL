@@ -58,6 +58,7 @@ public class ESTAC_PLAT_CODE : MonoBehaviour
         if (collision.gameObject.tag == "LIMIT")
         {
             rb3d.isKinematic = true;
+
         }
         //nailed = (collision.gameObject.tag == "LIMIT");
         

@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 742432404163624659, guid: b443571f719be2644aa44cab310731ae, type: 3}
+      propertyPath: m_Constraints
+      value: 122
+      objectReference: {fileID: 0}
     - target: {fileID: 1545009627751466486, guid: b443571f719be2644aa44cab310731ae, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -569,6 +573,10 @@ PrefabInstance:
       propertyPath: rb3d
       value: 
       objectReference: {fileID: 1238918788}
+    - target: {fileID: 4967681647005112691, guid: b443571f719be2644aa44cab310731ae, type: 3}
+      propertyPath: nailed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4967681647005112691, guid: b443571f719be2644aa44cab310731ae, type: 3}
       propertyPath: pushPower
       value: 500
@@ -671,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943759908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.89, y: -0.28, z: 453.32782}
+  m_LocalPosition: {x: 8.89, y: -0.64, z: 453.32782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -935,7 +943,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4c477880dfdcffc479a2bc8a459b20fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1178,6 +1186,7 @@ GameObject:
   - component: {fileID: 1523940534}
   - component: {fileID: 1523940533}
   - component: {fileID: 1523940535}
+  - component: {fileID: 1523940536}
   - component: {fileID: 1523940532}
   m_Layer: 3
   m_Name: Player
@@ -1199,7 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1397945033}
-  coll: {fileID: 0}
+  coll: {fileID: 1523940536}
   rb3d: {fileID: 1523940535}
   walkSpeed: 6
   runSpeed: 12
@@ -1261,8 +1270,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &1523940536
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523940531}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1569245050
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement1 : MonoBehaviour
 {
     public Camera playerCamera;
     public Collider coll;
@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
+    private bool CameraUnlock = false;
+    private Quaternion originalRotation;
 
     private bool canMove = true;
 
@@ -40,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
             coll = GetComponent<Collider>();
 
         }
+
+        originalRotation = CamSwitch.transform.rotation;
+
     }
 
     void Update()
@@ -92,9 +97,25 @@ public class PlayerMovement : MonoBehaviour
             CamSwitch.transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse Y") * lookSpeedY, 0, 0);
         }
 
+        if (CameraUnlock)
+        {
+            rotationX += Input.GetAxis("Mouse Y") * lookSpeedY;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
+        }
+
+        else
+        {
+            CamSwitch.transform.localRotation = originalRotation;
+
+        }
+
+
         if (Input.GetMouseButtonDown(1))
         {
+            CameraUnlock = !CameraUnlock;
             CamSwitch.SetTrigger("Switch trigger");
+            
 
         }
 
@@ -114,13 +135,11 @@ public class PlayerMovement : MonoBehaviour
 
         Rigidbody body = hit.collider.attachedRigidbody;
 
-        //no rigibodyy
         if (body == null || body.isKinematic)
         {
             return;
         }
 
-        // We dont want to push objects below us
         if (hit.moveDirection.y < -0.2)
         {
             return;
@@ -132,6 +151,4 @@ public class PlayerMovement : MonoBehaviour
 
     }
 }
-
-
 
