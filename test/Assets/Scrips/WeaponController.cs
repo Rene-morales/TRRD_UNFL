@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public Transform shootSpawn;
-
-    public bool shooting;
-
+    public Transform BulletSpawnpoint;
     public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float power = 100f;
+
+
 
     void Start()
     {
-        
+       
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
 
-        shooting = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (shooting)
-        {
-            InstantiateBullet();
-        }
     }
 
     public void InstantiateBullet()
     {
-        Instantiate(bulletPrefab, shootSpawn.position, shootSpawn.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, BulletSpawnpoint.position, Quaternion.identity , GameObject.FindGameObjectWithTag("GameObjectholder").transform );
+        bullet.GetComponent<Rigidbody>().AddForce(BulletSpawnpoint.forward * bulletSpeed, ForceMode.Impulse);
+
     }
+
+    
+
 }
+
+

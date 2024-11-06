@@ -5,11 +5,9 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     Rigidbody bulletRb;
-
     public float power = 100f;
-    public float lifetime = 2f;
-
-    private float time = 0f;
+    public float lifetime = 3;
+    public float damage;
 
 
     void Start()
@@ -22,9 +20,9 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        time += Time.deltaTime;
+        lifetime -= Time.deltaTime;
 
-        if (time >= lifetime)
+        if (lifetime < 0)
         {
             Destroy(this.gameObject);
         }
