@@ -32,7 +32,6 @@ public class ESTAC_PLAT_CODE : MonoBehaviour
     {
         print("hola");
         
-        // m_ObjectCollider.isTrigger = true;
         rb3d.useGravity = true;
         fallfree = (rb3d.velocity.y > 0);
 

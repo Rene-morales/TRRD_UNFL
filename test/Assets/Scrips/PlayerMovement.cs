@@ -16,8 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float lookSpeedY = 2f;
     public float lookXLimit = 45f;
     public float defaultHeight = 2f;
-    public float crouchHeight = 2f;
-    public float crouchSpeed = 6f;
+  
     public Animator CamSwitch;
     public WeaponController weaponController;
     float pushPower = 2.0f;
@@ -75,13 +74,6 @@ public class PlayerMovement : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftControl) && canMove)
-        {
-            characterController.height = crouchHeight;
-            walkSpeed = crouchSpeed;
-            runSpeed = crouchSpeed;
-
-        }
         else
         {
             characterController.height = defaultHeight;
