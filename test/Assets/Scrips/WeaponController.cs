@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,15 +22,19 @@ public class WeaponController : MonoBehaviour
 
     }
 
-    public void InstantiateBullet()
+    public void InstantiateBullet(Vector3 shootDirection)
     {
-        GameObject bullet = Instantiate(bulletPrefab, BulletSpawnpoint.position, Quaternion.identity , GameObject.FindGameObjectWithTag("GameObjectholder").transform );
-        bullet.GetComponent<Rigidbody>().AddForce(BulletSpawnpoint.forward * bulletSpeed, ForceMode.Impulse);
+        GameObject bullet = Instantiate(bulletPrefab, BulletSpawnpoint.position, BulletSpawnpoint.rotation , GameObject.FindGameObjectWithTag("GameObjectholder").transform );
+        bullet.GetComponent<Rigidbody>().AddRelativeForce(BulletSpawnpoint.forward * bulletSpeed, ForceMode.Impulse);
 
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        if (bulletRb != null)
+        {
+            bulletRb.AddForce(shootDirection * bulletSpeed, ForceMode.Impulse); 
+        }
     }
 
     
-
 }
 
 

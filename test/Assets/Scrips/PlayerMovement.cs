@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchHeight = 2f;
     public float crouchSpeed = 6f;
     public Animator CamSwitch;
+    public WeaponController weaponController;
     float pushPower = 2.0f;
 
 
@@ -38,13 +39,15 @@ public class PlayerMovement : MonoBehaviour
 
 
         {
-
             coll = GetComponent<Collider>();
-
         }
 
         originalRotation = CamSwitch.transform.rotation;
 
+        if(weaponController == null)
+        {
+            weaponController = GetComponentInChildren<WeaponController>();
+        }
     }
 
     void Update()
@@ -119,7 +122,14 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButtonDown(0) && weaponController != null)
+        {
+            Vector3 shootDirection = playerCamera.transform.forward;
 
+            Debug.Log("Dirección de disparo: " + shootDirection);
+
+            weaponController.InstantiateBullet(shootDirection);
+        }
 
 
 

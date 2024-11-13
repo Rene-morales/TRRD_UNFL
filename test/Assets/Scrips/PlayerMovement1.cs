@@ -31,6 +31,8 @@ public class PlayerMovement1 : MonoBehaviour
 
     private bool canMove = true;
 
+    public Vector3 shootDirection { get; private set; }
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -124,7 +126,7 @@ public class PlayerMovement1 : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && weaponController != null)
         {
-            weaponController.InstantiateBullet();
+            weaponController.InstantiateBullet(shootDirection);
         }
 
 
