@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float lookSpeedY = 2f;
     public float lookXLimit = 45f;
     public float defaultHeight = 2f;
+    
   
     public Animator CamSwitch;
     public WeaponController weaponController;
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private bool CameraUnlock = false;
     private Quaternion originalRotation;
-
+   
     private bool canMove = true;
 
     void Start()
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        
 
         {
             coll = GetComponent<Collider>();
@@ -48,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
             weaponController = GetComponentInChildren<WeaponController>();
         }
     }
+
+   
+
+
 
     void Update()
     {

@@ -6,8 +6,8 @@ public class BulletController : MonoBehaviour
 {
     Rigidbody bulletRb;
     public float power = 100f;
-    public float lifetime = 3;
-    public float damage;
+    public float lifetime = 1200f;
+    public int damage = 1;
 
 
     void Start()

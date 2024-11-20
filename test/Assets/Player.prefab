@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 3131360479204788992}
   - component: {fileID: 3131360479204789004}
   - component: {fileID: 3131360479204788993}
+  - component: {fileID: 6096703919710011626}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -165,7 +166,7 @@ Transform:
   - {fileID: 3131360479553183079}
   - {fileID: 3131360479347557746}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &3131360479204789005
 CharacterController:
@@ -237,7 +238,7 @@ MonoBehaviour:
   lookSpeedX: 2
   lookSpeedY: 2
   lookXLimit: 45
-  defaultHeight: 2
+  defaultHeight: 1.5
   CamSwitch: {fileID: 3131360479347557747}
   weaponController: {fileID: 0}
 --- !u!114 &3131360479204788993
@@ -256,6 +257,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5829351925515253100, guid: ad0ee6081da2e7b42bd7d04e6ee44f91, type: 3}
   bulletSpeed: 20
   power: 100
+--- !u!114 &6096703919710011626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131360479204789003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73348451ff9b1334f92d854ba0417b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Currenthealth: 0
+  MaxHealth: 4
 --- !u!1 &3131360479347557759
 GameObject:
   m_ObjectHideFlags: 0

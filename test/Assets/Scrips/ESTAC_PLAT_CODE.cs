@@ -7,7 +7,6 @@ public class ESTAC_PLAT_CODE : MonoBehaviour
     public Rigidbody rb3d;
     public Collider coll;
     public float vel;
-    //private float time = 0.0f;
     public float pushPower = 50.0f;
     Collider m_ObjectCollider;
     public bool fallfree;
