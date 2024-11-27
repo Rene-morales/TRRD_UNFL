@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
     Rigidbody bulletRb;
     public float power = 100f;
-    public float lifetime = 1200f;
+    public float lifetime;
     public int damage = 1;
 
 
@@ -31,6 +31,7 @@ public class BulletController : MonoBehaviour
     {
        if (collision.gameObject.activeInHierarchy == true)
         {
+            print(collision.gameObject.name);
             Destroy(this.gameObject, 0.02f);
         }
     }

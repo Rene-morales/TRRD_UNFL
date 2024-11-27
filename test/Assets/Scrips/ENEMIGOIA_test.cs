@@ -27,10 +27,11 @@ public class ENEMIGOIA_test : MonoBehaviour
     private float currentHealth;
 
     // Daño del enemigo
-    public int enemyDamage = 1; // Cantidad de daño que el enemigo hace al jugador
+    public int enemyDamage; // Cantidad de daño que el enemigo hace al jugador
 
     private void Awake()
     {
+        player = GameObject.Find("player").transform;
         agent = GetComponent<NavMeshAgent>();
         currentHealth = maxHealth; // Inicializamos la salud del enemigo
     }
@@ -42,24 +43,13 @@ public class ENEMIGOIA_test : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         // Actualizamos el estado de la IA basado en la posición del jugador
-        if (!playerInSightRange && !playerInAttackRange)
-        {
-            Patroling();
-        }
-        else if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-        }
-        else if (playerInAttackRange)
-        {
-            AttackPlayer();
-        }
-
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange) AttackPlayer();
+      
         // Comprobamos si la salud del enemigo es 0 o menor, y lo destruimos
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+       
+
     }
 
     private void Patroling()
@@ -106,7 +96,7 @@ public class ENEMIGOIA_test : MonoBehaviour
     {
         // Aseguramos que el enemigo no se mueva mientras ataca
         agent.SetDestination(transform.position);
-        //transform.LookAt(player);
+        transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
@@ -119,7 +109,7 @@ public class ENEMIGOIA_test : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(enemyDamage);  // Aplicamos daño al jugador
-                Debug.Log("El jugador recibió daño del enemigo: " + enemyDamage);
+                Debug.Log("El enemigo aplica daño: " + enemyDamage);
             }
             else
             {
@@ -136,16 +126,14 @@ public class ENEMIGOIA_test : MonoBehaviour
     // Método para recibir daño
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;  // Reducimos la salud por la cantidad de daño
+        currentHealth -= damage;
+
+        if (currentHealth < 0) Debug.Log("El enemigo ha muerto.");
+        Destroy(gameObject); ; // Reducimos la salud por la cantidad de daño
         Debug.Log("Enemigo recibió " + damage + " de daño. Salud actual: " + currentHealth);
     }
 
     // Método para destruir al enemigo cuando la salud llega a 0
-    private void Die()
-    {
-        Debug.Log("El enemigo ha muerto.");
-        Destroy(gameObject);  // Destruimos el GameObject del enemigo
-    }
 
     // Detecta la colisión con el jugador y le hace daño
     private void OnTriggerEnter(Collider other)
